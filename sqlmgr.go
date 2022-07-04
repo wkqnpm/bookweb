@@ -1,11 +1,4 @@
-/*
- * @Descripttion:
- * @version:
- * @Author: wkq
- * @Date: 2022-06-12 10:10:16
- * @LastEditors: Please set LastEditors
- * @LastEditTime: 2022-07-02 19:11:09
- */
+
 package sqlmgr
 
 import (
@@ -29,7 +22,7 @@ type Book struct {
 func InitDB(username, pwd, url, dbname string) (err error) {
 
 	dsn := username + ":" + pwd + "@tcp(" + url + ")/" + dbname
-	// dsn := "root:root12345@tcp(127.0.0.1:3306)/gostudy"
+	
 	db, err = sqlx.Open("mysql", dsn)
 	if err != nil {
 		fmt.Printf("open database falid %v\n", err)
