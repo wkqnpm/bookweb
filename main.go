@@ -1,11 +1,4 @@
-/*
- * @Descripttion:
- * @version:
- * @Author: wkq
- * @Date: 2022-06-12 10:05:33
- * @LastEditors: Please set LastEditors
- * @LastEditTime: 2022-07-02 19:11:59
- */
+
 package main
 
 import (
@@ -127,17 +120,17 @@ func handleDel(W http.ResponseWriter, r *http.Request) {
 	ResData(err, W, "del data error")
 }
 func main() {
-	err := sqlmgr.InitDB("root", "123456", "127.0.0.1:3306", "books")
+	err := sqlmgr.InitDB(dbusername, dbpwd, dburl, dbname)
 	if err != nil {
 		fmt.Println("connect db faild\n", err)
 		return
 	}
 	fmt.Println("database connect success")
 	// sqlmgr.CreateBookTable()
-	http.HandleFunc("/list", cros(handleList))
-	http.HandleFunc("/add", cros(handleAdd))
-	http.HandleFunc("/edit", cros(handleEdit))
-	http.HandleFunc("/del", cros(handleDel))
+	http.HandleFunc("/list", cros(handleList))//获取列表
+	http.HandleFunc("/add", cros(handleAdd))//添加
+	http.HandleFunc("/edit", cros(handleEdit))//编辑
+	http.HandleFunc("/del", cros(handleDel))//删除
 
 	err = http.ListenAndServe("127.0.0.1:8088", nil) //设置监听的端口
 	if err != nil {
